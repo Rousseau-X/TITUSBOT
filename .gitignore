@@ -1,0 +1,25 @@
+# Dossiers de session et cache
+session/
+tmp/
+message_cache/
+*.log
+
+# Dépendances
+node_modules/
+
+# Fichiers de configuration sensibles
+config.js
+group_settings.json
+statusconfig.json
+antidelete.json
+warns.json
+bannedWords.json
+quiz_sessions.json
+*.txt
+
+# Fichiers temporaires
+*.mp4
+*.mp3
+*.jpg
+*.png
+*.webp
