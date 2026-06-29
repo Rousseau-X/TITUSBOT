@@ -220,5 +220,671 @@
     "bot_id": 1,
     "name": "ask",
     "enabled": "Pose une question à l'IA"
+  },
+  {
+    "id": 38,
+    "bot_id": 2,
+    "name": "ping",
+    "enabled": "Teste la réactivité du bot"
+  },
+  {
+    "id": 39,
+    "bot_id": 2,
+    "name": "menu",
+    "enabled": "Affiche le menu des commandes"
+  },
+  {
+    "id": 40,
+    "bot_id": 2,
+    "name": "info",
+    "enabled": "Infos sur le bot"
+  },
+  {
+    "id": 41,
+    "bot_id": 2,
+    "name": "ban",
+    "enabled": "Bannit un membre du groupe"
+  },
+  {
+    "id": 42,
+    "bot_id": 2,
+    "name": "kick",
+    "enabled": "Expulse un membre"
+  },
+  {
+    "id": 43,
+    "bot_id": 2,
+    "name": "mute",
+    "enabled": "Rend muet un membre"
+  },
+  {
+    "id": 44,
+    "bot_id": 2,
+    "name": "unmute",
+    "enabled": "Retire le mode muet"
+  },
+  {
+    "id": 45,
+    "bot_id": 2,
+    "name": "promote",
+    "enabled": "Promeut en admin"
+  },
+  {
+    "id": 46,
+    "bot_id": 2,
+    "name": "demote",
+    "enabled": "Rétrograde un admin"
+  },
+  {
+    "id": 47,
+    "bot_id": 2,
+    "name": "tagall",
+    "enabled": "Mentionne tous les membres"
+  },
+  {
+    "id": 48,
+    "bot_id": 2,
+    "name": "sticker",
+    "enabled": "Crée un sticker depuis une image"
+  },
+  {
+    "id": 49,
+    "bot_id": 2,
+    "name": "ytb",
+    "enabled": "Télécharge une vidéo YouTube"
+  },
+  {
+    "id": 50,
+    "bot_id": 2,
+    "name": "ytmp3",
+    "enabled": "Télécharge l'audio YouTube"
+  },
+  {
+    "id": 51,
+    "bot_id": 2,
+    "name": "quiz",
+    "enabled": "Lance un quiz"
+  },
+  {
+    "id": 52,
+    "bot_id": 2,
+    "name": "stats",
+    "enabled": "Statistiques du bot"
+  },
+  {
+    "id": 53,
+    "bot_id": 2,
+    "name": "uptime",
+    "enabled": "Temps de fonctionnement"
+  },
+  {
+    "id": 54,
+    "bot_id": 2,
+    "name": "traduire",
+    "enabled": "Traduit un texte"
+  },
+  {
+    "id": 55,
+    "bot_id": 2,
+    "name": "meteo",
+    "enabled": "Météo d'une ville"
+  },
+  {
+    "id": 56,
+    "bot_id": 2,
+    "name": "crypto",
+    "enabled": "Prix des cryptomonnaies"
+  },
+  {
+    "id": 57,
+    "bot_id": 2,
+    "name": "love",
+    "enabled": "Compatibilité amoureuse"
+  },
+  {
+    "id": 58,
+    "bot_id": 2,
+    "name": "blague",
+    "enabled": "Raconte une blague"
+  },
+  {
+    "id": 59,
+    "bot_id": 2,
+    "name": "coinflip",
+    "enabled": "Pile ou face"
+  },
+  {
+    "id": 60,
+    "bot_id": 2,
+    "name": "dice",
+    "enabled": "Lancer de dé"
+  },
+  {
+    "id": 61,
+    "bot_id": 2,
+    "name": "antidelete",
+    "enabled": "Anti-suppression de messages"
+  },
+  {
+    "id": 62,
+    "bot_id": 2,
+    "name": "autoviewstatus",
+    "enabled": "Vue automatique des statuts"
+  },
+  {
+    "id": 63,
+    "bot_id": 2,
+    "name": "setwelcome",
+    "enabled": "Message de bienvenue"
+  },
+  {
+    "id": 64,
+    "bot_id": 2,
+    "name": "setgoodbye",
+    "enabled": "Message d'au revoir"
+  },
+  {
+    "id": 65,
+    "bot_id": 2,
+    "name": "warn",
+    "enabled": "Avertir un membre"
+  },
+  {
+    "id": 66,
+    "bot_id": 2,
+    "name": "groupinfo",
+    "enabled": "Infos du groupe"
+  },
+  {
+    "id": 67,
+    "bot_id": 2,
+    "name": "hidetag",
+    "enabled": "Tag invisible"
+  },
+  {
+    "id": 68,
+    "bot_id": 2,
+    "name": "qrcode",
+    "enabled": "Génère un QR code"
+  },
+  {
+    "id": 69,
+    "bot_id": 2,
+    "name": "base64",
+    "enabled": "Encode/décode en base64"
+  },
+  {
+    "id": 70,
+    "bot_id": 2,
+    "name": "shorturl",
+    "enabled": "Raccourcit une URL"
+  },
+  {
+    "id": 71,
+    "bot_id": 2,
+    "name": "ip",
+    "enabled": "Infos sur une IP"
+  },
+  {
+    "id": 72,
+    "bot_id": 2,
+    "name": "password",
+    "enabled": "Génère un mot de passe"
+  },
+  {
+    "id": 73,
+    "bot_id": 2,
+    "name": "tts",
+    "enabled": "Texte en parole"
+  },
+  {
+    "id": 74,
+    "bot_id": 2,
+    "name": "ask",
+    "enabled": "Pose une question à l'IA"
+  },
+  {
+    "id": 75,
+    "bot_id": 3,
+    "name": "ping",
+    "enabled": "Teste la réactivité du bot"
+  },
+  {
+    "id": 76,
+    "bot_id": 3,
+    "name": "menu",
+    "enabled": "Affiche le menu des commandes"
+  },
+  {
+    "id": 77,
+    "bot_id": 3,
+    "name": "info",
+    "enabled": "Infos sur le bot"
+  },
+  {
+    "id": 78,
+    "bot_id": 3,
+    "name": "ban",
+    "enabled": "Bannit un membre du groupe"
+  },
+  {
+    "id": 79,
+    "bot_id": 3,
+    "name": "kick",
+    "enabled": "Expulse un membre"
+  },
+  {
+    "id": 80,
+    "bot_id": 3,
+    "name": "mute",
+    "enabled": "Rend muet un membre"
+  },
+  {
+    "id": 81,
+    "bot_id": 3,
+    "name": "unmute",
+    "enabled": "Retire le mode muet"
+  },
+  {
+    "id": 82,
+    "bot_id": 3,
+    "name": "promote",
+    "enabled": "Promeut en admin"
+  },
+  {
+    "id": 83,
+    "bot_id": 3,
+    "name": "demote",
+    "enabled": "Rétrograde un admin"
+  },
+  {
+    "id": 84,
+    "bot_id": 3,
+    "name": "tagall",
+    "enabled": "Mentionne tous les membres"
+  },
+  {
+    "id": 85,
+    "bot_id": 3,
+    "name": "sticker",
+    "enabled": "Crée un sticker depuis une image"
+  },
+  {
+    "id": 86,
+    "bot_id": 3,
+    "name": "ytb",
+    "enabled": "Télécharge une vidéo YouTube"
+  },
+  {
+    "id": 87,
+    "bot_id": 3,
+    "name": "ytmp3",
+    "enabled": "Télécharge l'audio YouTube"
+  },
+  {
+    "id": 88,
+    "bot_id": 3,
+    "name": "quiz",
+    "enabled": "Lance un quiz"
+  },
+  {
+    "id": 89,
+    "bot_id": 3,
+    "name": "stats",
+    "enabled": "Statistiques du bot"
+  },
+  {
+    "id": 90,
+    "bot_id": 3,
+    "name": "uptime",
+    "enabled": "Temps de fonctionnement"
+  },
+  {
+    "id": 91,
+    "bot_id": 3,
+    "name": "traduire",
+    "enabled": "Traduit un texte"
+  },
+  {
+    "id": 92,
+    "bot_id": 3,
+    "name": "meteo",
+    "enabled": "Météo d'une ville"
+  },
+  {
+    "id": 93,
+    "bot_id": 3,
+    "name": "crypto",
+    "enabled": "Prix des cryptomonnaies"
+  },
+  {
+    "id": 94,
+    "bot_id": 3,
+    "name": "love",
+    "enabled": "Compatibilité amoureuse"
+  },
+  {
+    "id": 95,
+    "bot_id": 3,
+    "name": "blague",
+    "enabled": "Raconte une blague"
+  },
+  {
+    "id": 96,
+    "bot_id": 3,
+    "name": "coinflip",
+    "enabled": "Pile ou face"
+  },
+  {
+    "id": 97,
+    "bot_id": 3,
+    "name": "dice",
+    "enabled": "Lancer de dé"
+  },
+  {
+    "id": 98,
+    "bot_id": 3,
+    "name": "antidelete",
+    "enabled": "Anti-suppression de messages"
+  },
+  {
+    "id": 99,
+    "bot_id": 3,
+    "name": "autoviewstatus",
+    "enabled": "Vue automatique des statuts"
+  },
+  {
+    "id": 100,
+    "bot_id": 3,
+    "name": "setwelcome",
+    "enabled": "Message de bienvenue"
+  },
+  {
+    "id": 101,
+    "bot_id": 3,
+    "name": "setgoodbye",
+    "enabled": "Message d'au revoir"
+  },
+  {
+    "id": 102,
+    "bot_id": 3,
+    "name": "warn",
+    "enabled": "Avertir un membre"
+  },
+  {
+    "id": 103,
+    "bot_id": 3,
+    "name": "groupinfo",
+    "enabled": "Infos du groupe"
+  },
+  {
+    "id": 104,
+    "bot_id": 3,
+    "name": "hidetag",
+    "enabled": "Tag invisible"
+  },
+  {
+    "id": 105,
+    "bot_id": 3,
+    "name": "qrcode",
+    "enabled": "Génère un QR code"
+  },
+  {
+    "id": 106,
+    "bot_id": 3,
+    "name": "base64",
+    "enabled": "Encode/décode en base64"
+  },
+  {
+    "id": 107,
+    "bot_id": 3,
+    "name": "shorturl",
+    "enabled": "Raccourcit une URL"
+  },
+  {
+    "id": 108,
+    "bot_id": 3,
+    "name": "ip",
+    "enabled": "Infos sur une IP"
+  },
+  {
+    "id": 109,
+    "bot_id": 3,
+    "name": "password",
+    "enabled": "Génère un mot de passe"
+  },
+  {
+    "id": 110,
+    "bot_id": 3,
+    "name": "tts",
+    "enabled": "Texte en parole"
+  },
+  {
+    "id": 111,
+    "bot_id": 3,
+    "name": "ask",
+    "enabled": "Pose une question à l'IA"
+  },
+  {
+    "id": 112,
+    "bot_id": 4,
+    "name": "ping",
+    "enabled": "Teste la réactivité du bot"
+  },
+  {
+    "id": 113,
+    "bot_id": 4,
+    "name": "menu",
+    "enabled": "Affiche le menu des commandes"
+  },
+  {
+    "id": 114,
+    "bot_id": 4,
+    "name": "info",
+    "enabled": "Infos sur le bot"
+  },
+  {
+    "id": 115,
+    "bot_id": 4,
+    "name": "ban",
+    "enabled": "Bannit un membre du groupe"
+  },
+  {
+    "id": 116,
+    "bot_id": 4,
+    "name": "kick",
+    "enabled": "Expulse un membre"
+  },
+  {
+    "id": 117,
+    "bot_id": 4,
+    "name": "mute",
+    "enabled": "Rend muet un membre"
+  },
+  {
+    "id": 118,
+    "bot_id": 4,
+    "name": "unmute",
+    "enabled": "Retire le mode muet"
+  },
+  {
+    "id": 119,
+    "bot_id": 4,
+    "name": "promote",
+    "enabled": "Promeut en admin"
+  },
+  {
+    "id": 120,
+    "bot_id": 4,
+    "name": "demote",
+    "enabled": "Rétrograde un admin"
+  },
+  {
+    "id": 121,
+    "bot_id": 4,
+    "name": "tagall",
+    "enabled": "Mentionne tous les membres"
+  },
+  {
+    "id": 122,
+    "bot_id": 4,
+    "name": "sticker",
+    "enabled": "Crée un sticker depuis une image"
+  },
+  {
+    "id": 123,
+    "bot_id": 4,
+    "name": "ytb",
+    "enabled": "Télécharge une vidéo YouTube"
+  },
+  {
+    "id": 124,
+    "bot_id": 4,
+    "name": "ytmp3",
+    "enabled": "Télécharge l'audio YouTube"
+  },
+  {
+    "id": 125,
+    "bot_id": 4,
+    "name": "quiz",
+    "enabled": "Lance un quiz"
+  },
+  {
+    "id": 126,
+    "bot_id": 4,
+    "name": "stats",
+    "enabled": "Statistiques du bot"
+  },
+  {
+    "id": 127,
+    "bot_id": 4,
+    "name": "uptime",
+    "enabled": "Temps de fonctionnement"
+  },
+  {
+    "id": 128,
+    "bot_id": 4,
+    "name": "traduire",
+    "enabled": "Traduit un texte"
+  },
+  {
+    "id": 129,
+    "bot_id": 4,
+    "name": "meteo",
+    "enabled": "Météo d'une ville"
+  },
+  {
+    "id": 130,
+    "bot_id": 4,
+    "name": "crypto",
+    "enabled": "Prix des cryptomonnaies"
+  },
+  {
+    "id": 131,
+    "bot_id": 4,
+    "name": "love",
+    "enabled": "Compatibilité amoureuse"
+  },
+  {
+    "id": 132,
+    "bot_id": 4,
+    "name": "blague",
+    "enabled": "Raconte une blague"
+  },
+  {
+    "id": 133,
+    "bot_id": 4,
+    "name": "coinflip",
+    "enabled": "Pile ou face"
+  },
+  {
+    "id": 134,
+    "bot_id": 4,
+    "name": "dice",
+    "enabled": "Lancer de dé"
+  },
+  {
+    "id": 135,
+    "bot_id": 4,
+    "name": "antidelete",
+    "enabled": "Anti-suppression de messages"
+  },
+  {
+    "id": 136,
+    "bot_id": 4,
+    "name": "autoviewstatus",
+    "enabled": "Vue automatique des statuts"
+  },
+  {
+    "id": 137,
+    "bot_id": 4,
+    "name": "setwelcome",
+    "enabled": "Message de bienvenue"
+  },
+  {
+    "id": 138,
+    "bot_id": 4,
+    "name": "setgoodbye",
+    "enabled": "Message d'au revoir"
+  },
+  {
+    "id": 139,
+    "bot_id": 4,
+    "name": "warn",
+    "enabled": "Avertir un membre"
+  },
+  {
+    "id": 140,
+    "bot_id": 4,
+    "name": "groupinfo",
+    "enabled": "Infos du groupe"
+  },
+  {
+    "id": 141,
+    "bot_id": 4,
+    "name": "hidetag",
+    "enabled": "Tag invisible"
+  },
+  {
+    "id": 142,
+    "bot_id": 4,
+    "name": "qrcode",
+    "enabled": "Génère un QR code"
+  },
+  {
+    "id": 143,
+    "bot_id": 4,
+    "name": "base64",
+    "enabled": "Encode/décode en base64"
+  },
+  {
+    "id": 144,
+    "bot_id": 4,
+    "name": "shorturl",
+    "enabled": "Raccourcit une URL"
+  },
+  {
+    "id": 145,
+    "bot_id": 4,
+    "name": "ip",
+    "enabled": "Infos sur une IP"
+  },
+  {
+    "id": 146,
+    "bot_id": 4,
+    "name": "password",
+    "enabled": "Génère un mot de passe"
+  },
+  {
+    "id": 147,
+    "bot_id": 4,
+    "name": "tts",
+    "enabled": "Texte en parole"
+  },
+  {
+    "id": 148,
+    "bot_id": 4,
+    "name": "ask",
+    "enabled": "Pose une question à l'IA"
   }
 ]

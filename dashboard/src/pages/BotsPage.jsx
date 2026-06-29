@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Bot, Plus, Trash2, ArrowRight, Phone, CheckCircle2, XCircle } from "lucide-react"
 import { bots as botsApi } from "../api/client"
 
@@ -9,6 +9,7 @@ export default function BotsPage() {
     const [showCreate, setShowCreate] = useState(false)
     const [name, setName] = useState("")
     const [creating, setCreating] = useState(false)
+    const navigate = useNavigate()
 
     const load = () => botsApi.list().then(setBotList).finally(() => setLoading(false))
     useEffect(() => { load() }, [])
@@ -17,11 +18,9 @@ export default function BotsPage() {
         e.preventDefault()
         setCreating(true)
         try {
-            await botsApi.create({ name })
-            setName("")
-            setShowCreate(false)
-            load()
-        } finally {
+            const newBot = await botsApi.create({ name })
+            navigate(`/bots/${newBot.id}`)
+        } catch {
             setCreating(false)
         }
     }

@@ -4,5 +4,17 @@
     "email": "test@test.com",
     "password_hash": "$2b$10$tXSrTRj0MLLtRgkqxHH46unVSh4FcP4/OIFOrzlBAsFqziT3DWnUq",
     "name": "Test"
+  },
+  {
+    "id": 2,
+    "email": "fianto673@gmail.com",
+    "password_hash": "$2b$10$tMFvOx/PH9nq8AknMfEcTuSzgKVDTFRizNtxUwnNV/RPJkheCkvqW",
+    "name": "Fianto Titus Rousseau "
+  },
+  {
+    "id": 3,
+    "email": "fianto673@gmail.com",
+    "password_hash": "$2b$10$3g3ZHtr50UFCNLpcNYhgDODOgbAq2.ndx8cVNd.VcSyqAE2/Mk3Xy",
+    "name": "Fianto Titus Rousseau "
   }
 ]

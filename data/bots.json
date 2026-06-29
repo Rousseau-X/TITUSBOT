@@ -4,5 +4,23 @@
     "user_id": 1,
     "name": "Mon Bot WhatsApp",
     "phone": null
+  },
+  {
+    "id": 2,
+    "user_id": 3,
+    "name": "Rousseau-Bot",
+    "phone": null
+  },
+  {
+    "id": 3,
+    "user_id": 3,
+    "name": "Rousseau ",
+    "phone": null
+  },
+  {
+    "id": 4,
+    "user_id": 3,
+    "name": "Rousseau-Bot",
+    "phone": null
   }
 ]
