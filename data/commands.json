@@ -2292,5 +2292,301 @@
     "enabled": 1,
     "type": "builtin",
     "description": "Pose une question à l'IA"
+  },
+  {
+    "id": 371,
+    "bot_id": 11,
+    "name": "ping",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Teste la réactivité du bot"
+  },
+  {
+    "id": 372,
+    "bot_id": 11,
+    "name": "menu",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Affiche le menu des commandes"
+  },
+  {
+    "id": 373,
+    "bot_id": 11,
+    "name": "info",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Infos sur le bot"
+  },
+  {
+    "id": 374,
+    "bot_id": 11,
+    "name": "ban",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Bannit un membre du groupe"
+  },
+  {
+    "id": 375,
+    "bot_id": 11,
+    "name": "kick",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Expulse un membre"
+  },
+  {
+    "id": 376,
+    "bot_id": 11,
+    "name": "mute",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Rend muet un membre"
+  },
+  {
+    "id": 377,
+    "bot_id": 11,
+    "name": "unmute",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Retire le mode muet"
+  },
+  {
+    "id": 378,
+    "bot_id": 11,
+    "name": "promote",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Promeut en admin"
+  },
+  {
+    "id": 379,
+    "bot_id": 11,
+    "name": "demote",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Rétrograde un admin"
+  },
+  {
+    "id": 380,
+    "bot_id": 11,
+    "name": "tagall",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Mentionne tous les membres"
+  },
+  {
+    "id": 381,
+    "bot_id": 11,
+    "name": "sticker",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Crée un sticker depuis une image"
+  },
+  {
+    "id": 382,
+    "bot_id": 11,
+    "name": "ytb",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Télécharge une vidéo YouTube"
+  },
+  {
+    "id": 383,
+    "bot_id": 11,
+    "name": "ytmp3",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Télécharge l'audio YouTube"
+  },
+  {
+    "id": 384,
+    "bot_id": 11,
+    "name": "quiz",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Lance un quiz"
+  },
+  {
+    "id": 385,
+    "bot_id": 11,
+    "name": "stats",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Statistiques du bot"
+  },
+  {
+    "id": 386,
+    "bot_id": 11,
+    "name": "uptime",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Temps de fonctionnement"
+  },
+  {
+    "id": 387,
+    "bot_id": 11,
+    "name": "traduire",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Traduit un texte"
+  },
+  {
+    "id": 388,
+    "bot_id": 11,
+    "name": "meteo",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Météo d'une ville"
+  },
+  {
+    "id": 389,
+    "bot_id": 11,
+    "name": "crypto",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Prix des cryptomonnaies"
+  },
+  {
+    "id": 390,
+    "bot_id": 11,
+    "name": "love",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Compatibilité amoureuse"
+  },
+  {
+    "id": 391,
+    "bot_id": 11,
+    "name": "blague",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Raconte une blague"
+  },
+  {
+    "id": 392,
+    "bot_id": 11,
+    "name": "coinflip",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Pile ou face"
+  },
+  {
+    "id": 393,
+    "bot_id": 11,
+    "name": "dice",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Lancer de dé"
+  },
+  {
+    "id": 394,
+    "bot_id": 11,
+    "name": "antidelete",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Anti-suppression de messages"
+  },
+  {
+    "id": 395,
+    "bot_id": 11,
+    "name": "autoviewstatus",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Vue automatique des statuts"
+  },
+  {
+    "id": 396,
+    "bot_id": 11,
+    "name": "setwelcome",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Message de bienvenue"
+  },
+  {
+    "id": 397,
+    "bot_id": 11,
+    "name": "setgoodbye",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Message d'au revoir"
+  },
+  {
+    "id": 398,
+    "bot_id": 11,
+    "name": "warn",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Avertir un membre"
+  },
+  {
+    "id": 399,
+    "bot_id": 11,
+    "name": "groupinfo",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Infos du groupe"
+  },
+  {
+    "id": 400,
+    "bot_id": 11,
+    "name": "hidetag",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Tag invisible"
+  },
+  {
+    "id": 401,
+    "bot_id": 11,
+    "name": "qrcode",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Génère un QR code"
+  },
+  {
+    "id": 402,
+    "bot_id": 11,
+    "name": "base64",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Encode/décode en base64"
+  },
+  {
+    "id": 403,
+    "bot_id": 11,
+    "name": "shorturl",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Raccourcit une URL"
+  },
+  {
+    "id": 404,
+    "bot_id": 11,
+    "name": "ip",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Infos sur une IP"
+  },
+  {
+    "id": 405,
+    "bot_id": 11,
+    "name": "password",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Génère un mot de passe"
+  },
+  {
+    "id": 406,
+    "bot_id": 11,
+    "name": "tts",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Texte en parole"
+  },
+  {
+    "id": 407,
+    "bot_id": 11,
+    "name": "ask",
+    "enabled": 1,
+    "type": "builtin",
+    "description": "Pose une question à l'IA"
   }
 ]

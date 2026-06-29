@@ -59,5 +59,12 @@
     "user_id": 1,
     "name": "TestBot-Fixed",
     "phone": null
+  },
+  {
+    "id": 11,
+    "user_id": 2,
+    "name": "Rousseau ",
+    "phone": "22945176266",
+    "status": "disconnected"
   }
 ]
