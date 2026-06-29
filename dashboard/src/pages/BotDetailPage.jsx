@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom"
 import { io } from "socket.io-client"
-import { ChevronLeft, TerminalSquare, Settings, Command, Power, PhoneOff, AlertCircle, Wifi, RefreshCw } from "lucide-react"
+import { ChevronLeft, TerminalSquare, Settings, Command, Power, PhoneOff, AlertCircle, Wifi, RefreshCw, Activity } from "lucide-react"
 import { bots as botsApi } from "../api/client"
 
 export default function BotDetailPage() {
