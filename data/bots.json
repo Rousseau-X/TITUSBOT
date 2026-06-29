@@ -33,7 +33,8 @@
     "id": 6,
     "user_id": 5,
     "name": "Rousseau-Titus",
-    "phone": null
+    "phone": null,
+    "status": "disconnected"
   },
   {
     "id": 7,

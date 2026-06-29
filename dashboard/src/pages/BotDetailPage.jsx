@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom"
 import { io } from "socket.io-client"
-import { ChevronLeft, TerminalSquare, Settings, Command, Power, PhoneOff, AlertCircle, Wifi, RefreshCw, Activity } from "lucide-react"
+import { ChevronLeft, TerminalSquare, Settings, Command, Power, PhoneOff, AlertCircle, Wifi, RefreshCw, Activity, QrCode, Hash } from "lucide-react"
 import { bots as botsApi } from "../api/client"
 
 export default function BotDetailPage() {
@@ -13,6 +13,7 @@ export default function BotDetailPage() {
     const [qr, setQr] = useState(null)
     const [pairCode, setPairCode] = useState(null)
     const [phone, setPhone] = useState("")
+    const [method, setMethod] = useState("pair")
     const [connecting, setConnecting] = useState(false)
     const [loading, setLoading] = useState(true)
     const socketRef = useRef(null)
@@ -48,7 +49,12 @@ export default function BotDetailPage() {
         setConnecting(true)
         setQr(null)
         setPairCode(null)
-        try { await botsApi.connect(id, { phone }) } finally { setConnecting(false) }
+        try {
+            const payload = method === "pair" ? { phone } : {}
+            await botsApi.connect(id, payload)
+        } finally {
+            setConnecting(false)
+        }
     }
 
     const disconnect = async () => {
@@ -57,6 +63,8 @@ export default function BotDetailPage() {
         setQr(null)
         setPairCode(null)
     }
+
+    const isConnecting = connecting || bot?.status === "connecting"
 
     if (loading) return <div className="app-loading"><div className="spinner" /></div>
     if (!bot) return <div className="app-loading" style={{ color: "var(--danger)" }}>Bot not found</div>
@@ -108,7 +116,7 @@ export default function BotDetailPage() {
                 <div className="card" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#fff" }}>
                         <Wifi size={20} />
-                        <h2 style={{ fontSize: "1.125rem" }}>Connection Status</h2>
+                        <h2 style={{ fontSize: "1.125rem" }}>Connexion WhatsApp</h2>
                     </div>
 
                     {bot.status === "connected" ? (
@@ -119,59 +127,106 @@ export default function BotDetailPage() {
                             </div>
                             <div>
                                 <div style={{ fontSize: "1.25rem", fontWeight: 600, color: "#fff", marginBottom: "0.5rem" }}>Session Active</div>
-                                <p style={{ color: "var(--text-muted)", fontSize: "0.875rem", maxWidth: 260 }}>Bot is fully connected and processing messages.</p>
+                                <p style={{ color: "var(--text-muted)", fontSize: "0.875rem", maxWidth: 260 }}>Bot connecté et opérationnel.</p>
                             </div>
                             <button onClick={disconnect} className="btn btn-danger" style={{ width: "100%", maxWidth: 200 }}>
-                                <PhoneOff size={16} /> Disconnect
+                                <PhoneOff size={16} /> Déconnecter
                             </button>
                         </div>
                     ) : (
-                        <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                <label style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--text-muted)" }}>Target Phone Number</label>
-                                <div style={{ display: "flex", gap: "0.5rem" }}>
-                                    <input 
-                                        placeholder="e.g. 22900000000" 
-                                        value={phone} 
-                                        onChange={e => setPhone(e.target.value)} 
-                                        style={{ flex: 1 }} 
-                                        className="mono"
-                                    />
-                                    <button 
-                                        onClick={connect} 
-                                        disabled={connecting || bot.status === "connecting"} 
-                                        className="btn btn-primary"
-                                        style={{ width: 120 }}
-                                    >
-                                        {(connecting || bot.status === "connecting") ? <RefreshCw size={16} className="animate-spin" /> : <Power size={16} />}
-                                        {(connecting || bot.status === "connecting") ? "Pairing..." : "Connect"}
-                                    </button>
-                                </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+
+                            {/* Method Toggle */}
+                            <div style={{ display: "flex", background: "var(--bg-base)", borderRadius: "10px", padding: "4px", border: "1px solid var(--border-subtle)" }}>
+                                <button
+                                    onClick={() => { setMethod("pair"); setQr(null); setPairCode(null) }}
+                                    style={{
+                                        flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                                        padding: "0.6rem 0.75rem", borderRadius: "7px", border: "none", cursor: "pointer",
+                                        fontWeight: 600, fontSize: "0.875rem", transition: "all 0.15s",
+                                        background: method === "pair" ? "var(--accent)" : "transparent",
+                                        color: method === "pair" ? "#000" : "var(--text-muted)"
+                                    }}
+                                >
+                                    <Hash size={15} />
+                                    Pair Code
+                                </button>
+                                <button
+                                    onClick={() => { setMethod("qr"); setQr(null); setPairCode(null) }}
+                                    style={{
+                                        flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                                        padding: "0.6rem 0.75rem", borderRadius: "7px", border: "none", cursor: "pointer",
+                                        fontWeight: 600, fontSize: "0.875rem", transition: "all 0.15s",
+                                        background: method === "qr" ? "var(--accent)" : "transparent",
+                                        color: method === "qr" ? "#000" : "var(--text-muted)"
+                                    }}
+                                >
+                                    <QrCode size={15} />
+                                    QR Code
+                                </button>
                             </div>
 
-                            {pairCode && (
-                                <div className="animate-fade-in" style={{ padding: "1.5rem", background: "var(--bg-base)", borderRadius: "8px", border: "1px solid var(--border-strong)", textAlign: "center", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                                    <div style={{ fontSize: "0.875rem", color: "var(--text-muted)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em" }}>Pairing Code</div>
-                                    <div className="mono" style={{ fontSize: "2.5rem", fontWeight: 700, letterSpacing: "0.2em", color: "var(--accent)" }}>{pairCode}</div>
-                                    <div style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>Enter this code on WhatsApp:<br/>Linked Devices → Link a Device → Link with Phone Number Instead</div>
+                            {/* Phone input — only for pair code */}
+                            {method === "pair" && (
+                                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                                    <label style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--text-muted)" }}>Numéro de téléphone</label>
+                                    <input
+                                        placeholder="ex: 22900000000"
+                                        value={phone}
+                                        onChange={e => setPhone(e.target.value)}
+                                        className="mono"
+                                        style={{ width: "100%" }}
+                                    />
+                                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.5 }}>
+                                        Format international sans +. Ex : 33612345678
+                                    </div>
                                 </div>
                             )}
 
+                            {/* QR info */}
+                            {method === "qr" && !qr && !isConnecting && (
+                                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "1rem", background: "var(--bg-base)", borderRadius: "8px", border: "1px solid var(--border-subtle)" }}>
+                                    <AlertCircle size={18} color="var(--text-muted)" style={{ flexShrink: 0, marginTop: "0.125rem" }} />
+                                    <div style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.5 }}>
+                                        Un QR code sera généré. Scanne-le depuis WhatsApp → <strong>Appareils liés</strong>.
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Connect button */}
+                            <button
+                                onClick={connect}
+                                disabled={isConnecting || (method === "pair" && !phone.trim())}
+                                className="btn btn-primary"
+                                style={{ width: "100%" }}
+                            >
+                                {isConnecting
+                                    ? <><RefreshCw size={16} className="animate-spin" /> Connexion en cours...</>
+                                    : <><Power size={16} /> {method === "pair" ? "Obtenir le Pair Code" : "Générer le QR Code"}</>
+                                }
+                            </button>
+
+                            {/* Pair code result */}
+                            {pairCode && (
+                                <div className="animate-fade-in" style={{ padding: "1.5rem", background: "var(--bg-base)", borderRadius: "10px", border: "1px solid var(--border-strong)", textAlign: "center", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                                    <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em" }}>Code de couplage</div>
+                                    <div className="mono" style={{ fontSize: "2.25rem", fontWeight: 700, letterSpacing: "0.25em", color: "var(--accent)" }}>
+                                        {pairCode}
+                                    </div>
+                                    <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.6 }}>
+                                        Sur WhatsApp : <strong style={{ color: "var(--text-main)" }}>Appareils liés → Associer un appareil → Saisir le code</strong>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* QR code result */}
                             {qr && (
-                                <div className="animate-fade-in" style={{ padding: "1.5rem", background: "#fff", borderRadius: "8px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
-                                    <div style={{ fontSize: "0.875rem", color: "#666", fontWeight: 500 }}>Scan QR Code with WhatsApp</div>
+                                <div className="animate-fade-in" style={{ padding: "1.25rem", background: "#fff", borderRadius: "10px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
+                                    <div style={{ fontSize: "0.8125rem", color: "#555", fontWeight: 500 }}>Scanne avec WhatsApp</div>
                                     <div style={{ padding: "0.5rem", border: "1px solid #eee", borderRadius: "8px" }}>
                                         <img src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qr)}`} alt="QR Code" style={{ display: "block", width: 200, height: 200 }} />
                                     </div>
-                                </div>
-                            )}
-
-                            {!pairCode && !qr && bot.status !== "connecting" && (
-                                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "1rem", background: "var(--bg-base)", borderRadius: "8px", border: "1px solid var(--border-subtle)" }}>
-                                    <AlertCircle size={20} color="var(--text-muted)" style={{ flexShrink: 0, marginTop: "0.125rem" }} />
-                                    <div style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.5 }}>
-                                        Enter the phone number for the WhatsApp account you want this bot to control, then click Connect to generate a pairing code.
-                                    </div>
+                                    <div style={{ fontSize: "0.75rem", color: "#888" }}>WhatsApp → Appareils liés → Scanner</div>
                                 </div>
                             )}
                         </div>
@@ -182,12 +237,12 @@ export default function BotDetailPage() {
                 <div className="card" style={{ display: "flex", flexDirection: "column", gap: "1rem", height: "100%" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#fff" }}>
                         <TerminalSquare size={20} />
-                        <h2 style={{ fontSize: "1.125rem" }}>Live Logs</h2>
+                        <h2 style={{ fontSize: "1.125rem" }}>Logs en direct</h2>
                     </div>
                     
                     <div className="scroll-y mono" style={{ flex: 1, background: "var(--bg-base)", borderRadius: "8px", padding: "1rem", border: "1px solid var(--border-strong)", fontSize: "0.8125rem", minHeight: 300, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
                         {logs.length === 0 ? (
-                            <div style={{ color: "var(--text-muted)", fontStyle: "italic", textAlign: "center", margin: "auto" }}>Waiting for logs...</div>
+                            <div style={{ color: "var(--text-muted)", fontStyle: "italic", textAlign: "center", margin: "auto" }}>En attente de logs...</div>
                         ) : (
                             logs.map((log, i) => (
                                 <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
