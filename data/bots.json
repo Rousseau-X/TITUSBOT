@@ -22,5 +22,41 @@
     "user_id": 3,
     "name": "Rousseau-Bot",
     "phone": null
+  },
+  {
+    "id": 5,
+    "user_id": 4,
+    "name": "Rousseau ",
+    "phone": null
+  },
+  {
+    "id": 6,
+    "user_id": 5,
+    "name": "Rousseau-Titus",
+    "phone": null
+  },
+  {
+    "id": 7,
+    "user_id": 1,
+    "name": "TestBot",
+    "phone": null
+  },
+  {
+    "id": 8,
+    "user_id": 1,
+    "name": "TestBot2",
+    "phone": null
+  },
+  {
+    "id": 9,
+    "user_id": 1,
+    "name": "TestBot3",
+    "phone": null
+  },
+  {
+    "id": 10,
+    "user_id": 1,
+    "name": "TestBot-Fixed",
+    "phone": null
   }
 ]

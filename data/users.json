@@ -16,5 +16,17 @@
     "email": "fianto673@gmail.com",
     "password_hash": "$2b$10$3g3ZHtr50UFCNLpcNYhgDODOgbAq2.ndx8cVNd.VcSyqAE2/Mk3Xy",
     "name": "Fianto Titus Rousseau "
+  },
+  {
+    "id": 4,
+    "email": "fianto673@gmail.com",
+    "password_hash": "$2b$10$lJSngIa7J1j4vyLf0I/qTO7dfVgCShEEcSzG1y.i6jLNiw1dVf2Ke",
+    "name": "Fianto Rousseau "
+  },
+  {
+    "id": 5,
+    "email": "fianto673@gmail.com",
+    "password_hash": "$2b$10$c7ydtxJcBailu8d6Ykhf5.5Tsuvj.v0tlcbKDCmcga.k214mehcsy",
+    "name": "Fianto Titus "
   }
 ]
