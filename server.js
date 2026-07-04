@@ -32,6 +32,14 @@ app.use("/api/bots", authMiddleware, configRoutes)
 
 app.get("/api/health", (req, res) => res.json({ ok: true }))
 
+if (process.env.NODE_ENV === "production") {
+    const distDir = path.join(__dirname, "dashboard", "dist")
+    app.use(express.static(distDir))
+    app.get(/^(?!\/api).*/, (req, res) => {
+        res.sendFile(path.join(distDir, "index.html"))
+    })
+}
+
 io.use((socket, next) => {
     const token = socket.handshake.auth.token
     if (!token) return next(new Error("No token"))
@@ -62,7 +70,14 @@ io.on("connection", (socket) => {
     })
 })
 
-const PORT = process.env.API_PORT || 8000
-httpServer.listen(PORT, "localhost", () => {
-    console.log(`🚀 BotDash API running on port ${PORT}`)
-})
+const PORT = process.env.NODE_ENV === "production" ? (process.env.PORT || 8000) : (process.env.API_PORT || 8000)
+db.initSchema()
+    .then(() => {
+        httpServer.listen(PORT, "0.0.0.0", () => {
+            console.log(`🚀 BotDash API running on port ${PORT}`)
+        })
+    })
+    .catch(err => {
+        console.error("❌ Échec d'initialisation de la base de données :", err.message)
+        process.exit(1)
+    })

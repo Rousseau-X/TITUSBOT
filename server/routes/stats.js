@@ -3,39 +3,48 @@ const db = require("../db")
 
 const router = express.Router()
 
-router.get("/:id/stats", (req, res) => {
-    const bot = db.prepare("SELECT * FROM bots WHERE id = ? AND user_id = ?").get(req.params.id, req.userId)
+router.get("/:id/stats", async (req, res) => {
+    const result = await db.query("SELECT * FROM bots WHERE id = $1 AND user_id = $2", [req.params.id, req.userId])
+    const bot = result.rows[0]
     if (!bot) return res.status(404).json({ error: "Bot non trouvé" })
 
     const today = new Date().toISOString().slice(0, 10)
-    const todayStats = db.prepare("SELECT * FROM stats WHERE bot_id = ? AND date = ?").get(bot.id, today) || { messages_received: 0, commands_used: 0 }
+    const todayStatsResult = await db.query("SELECT * FROM stats WHERE bot_id = $1 AND date = $2", [bot.id, today])
+    const todayStats = todayStatsResult.rows[0] || { messages_received: 0, commands_used: 0 }
 
-    const last7 = db.prepare("SELECT * FROM stats WHERE bot_id = ? ORDER BY date DESC LIMIT 7").all(bot.id).reverse()
+    const last7Result = await db.query("SELECT * FROM stats WHERE bot_id = $1 ORDER BY date DESC LIMIT 7", [bot.id])
+    const last7 = last7Result.rows.reverse()
 
-    const totals = db.prepare("SELECT SUM(messages_received) as total_messages, SUM(commands_used) as total_commands FROM stats WHERE bot_id = ?").get(bot.id)
+    const totalsResult = await db.query(
+        "SELECT SUM(messages_received) as total_messages, SUM(commands_used) as total_commands FROM stats WHERE bot_id = $1",
+        [bot.id]
+    )
+    const totals = totalsResult.rows[0]
 
-    const topCommands = db.prepare(`
-        SELECT name, description FROM commands 
-        WHERE bot_id = ? AND enabled = 1 AND type = 'builtin'
-        ORDER BY name ASC LIMIT 10
-    `).all(bot.id)
+    const topCommandsResult = await db.query(
+        `SELECT name, description FROM commands 
+        WHERE bot_id = $1 AND enabled = 1 AND type = 'builtin'
+        ORDER BY name ASC LIMIT 10`,
+        [bot.id]
+    )
 
-    const totalCommands = db.prepare("SELECT COUNT(*) as count FROM commands WHERE bot_id = ?").get(bot.id)
-    const enabledCommands = db.prepare("SELECT COUNT(*) as count FROM commands WHERE bot_id = ? AND enabled = 1").get(bot.id)
+    const totalCommandsResult = await db.query("SELECT COUNT(*) as count FROM commands WHERE bot_id = $1", [bot.id])
+    const enabledCommandsResult = await db.query("SELECT COUNT(*) as count FROM commands WHERE bot_id = $1 AND enabled = 1", [bot.id])
 
     res.json({
         today: todayStats,
         last7,
-        totals: totals || { total_messages: 0, total_commands: 0 },
-        topCommands,
-        totalCommands: totalCommands.count,
-        enabledCommands: enabledCommands.count,
+        totals: (totals && totals.total_messages !== null) ? totals : { total_messages: 0, total_commands: 0 },
+        topCommands: topCommandsResult.rows,
+        totalCommands: Number(totalCommandsResult.rows[0].count),
+        enabledCommands: Number(enabledCommandsResult.rows[0].count),
         status: bot.status
     })
 })
 
-router.get("/overview", (req, res) => {
-    const bots = db.prepare("SELECT * FROM bots WHERE user_id = ?").all(req.userId)
+router.get("/overview", async (req, res) => {
+    const botsResult = await db.query("SELECT * FROM bots WHERE user_id = $1", [req.userId])
+    const bots = botsResult.rows
     const today = new Date().toISOString().slice(0, 10)
 
     let totalMessages = 0
@@ -43,7 +52,8 @@ router.get("/overview", (req, res) => {
     let connectedBots = 0
 
     for (const bot of bots) {
-        const s = db.prepare("SELECT * FROM stats WHERE bot_id = ? AND date = ?").get(bot.id, today)
+        const sResult = await db.query("SELECT * FROM stats WHERE bot_id = $1 AND date = $2", [bot.id, today])
+        const s = sResult.rows[0]
         if (s) {
             totalMessages += s.messages_received || 0
             totalCommands += s.commands_used || 0
