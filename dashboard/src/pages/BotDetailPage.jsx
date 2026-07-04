@@ -66,7 +66,19 @@ export default function BotDetailPage() {
         setPairCode(null)
     }
 
+    const cancel = async () => {
+        try {
+            await botsApi.cancel(id)
+        } finally {
+            setBot(b => b ? { ...b, status: "disconnected" } : b)
+            setQr(null)
+            setPairCode(null)
+            setConnecting(false)
+        }
+    }
+
     const isConnecting = connecting || bot?.status === "connecting"
+    const hasPendingAttempt = isConnecting || !!qr || !!pairCode
 
     if (loading) return <div className="app-loading"><div className="spinner" /></div>
     if (!bot) return <div className="app-loading" style={{ color: "var(--danger)" }}>Bot not found</div>

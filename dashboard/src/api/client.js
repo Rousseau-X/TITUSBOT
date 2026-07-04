@@ -26,6 +26,7 @@ export const bots = {
     remove: (id) => api.delete(`/bots/${id}`),
     connect: (id, data) => api.post(`/bots/${id}/connect`, data || {}),
     disconnect: (id) => api.post(`/bots/${id}/disconnect`),
+    cancel: (id) => api.post(`/bots/${id}/cancel`),
     logs: (id) => api.get(`/bots/${id}/logs`),
     blacklist: (id) => api.get(`/bots/${id}/blacklist`),
     addBlacklist: (id, number) => api.post(`/bots/${id}/blacklist`, { number }),

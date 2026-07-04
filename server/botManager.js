@@ -17,6 +17,25 @@ function getSessionDir(userId, botId) {
     return dir
 }
 
+function wipeSessionDir(userId, botId) {
+    const dir = path.join(__dirname, "..", "sessions", String(userId), String(botId))
+    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true })
+    fs.mkdirSync(dir, { recursive: true })
+    return dir
+}
+
+function waitForSocketOpen(sock, timeoutMs = 8000) {
+    return new Promise(resolve => {
+        const start = Date.now()
+        const check = () => {
+            const state = sock.ws?.socket?.readyState ?? sock.ws?.readyState
+            if (state === 1 || Date.now() - start >= timeoutMs) return resolve()
+            setTimeout(check, 150)
+        }
+        check()
+    })
+}
+
 async function addLog(botId, level, message) {
     try {
         await db.query("INSERT INTO logs (bot_id, level, message) VALUES ($1, $2, $3)", [botId, level, message])
@@ -57,7 +76,16 @@ async function startBot(botId, userId, phone) {
     await updateBotStatus(botId, userId, "connecting")
     addLog(botId, "info", "🔄 Démarrage de la connexion WhatsApp...")
 
-    const sessionDir = getSessionDir(userId, botId)
+    // Pour une nouvelle demande de pair code, on repart toujours d'une session
+    // vierge : une session précédente incomplète/corrompue est la cause la
+    // plus fréquente d'un "Session expirée" immédiat après le couplage.
+    let sessionDir = getSessionDir(userId, botId)
+    const existingCreds = path.join(sessionDir, "creds.json")
+    const alreadyLinked = fs.existsSync(existingCreds)
+    if (phone && !alreadyLinked) {
+        sessionDir = wipeSessionDir(userId, botId)
+    }
+
     const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
     const { version } = await fetchLatestBaileysVersion()
 
@@ -76,15 +104,25 @@ async function startBot(botId, userId, phone) {
     instances[key] = { sock, userId, botId }
 
     if (!sock.authState.creds.registered) {
-        await new Promise(resolve => setTimeout(resolve, 3000))
+        await waitForSocketOpen(sock)
         if (phone) {
-            try {
-                const cleanPhone = phone.replace(/\D/g, "")
-                const code = await sock.requestPairingCode(cleanPhone)
+            const cleanPhone = phone.replace(/\D/g, "")
+            let code = null
+            for (let attempt = 1; attempt <= 3 && !code; attempt++) {
+                try {
+                    code = await sock.requestPairingCode(cleanPhone)
+                } catch (e) {
+                    if (attempt === 3) {
+                        addLog(botId, "error", `❌ Erreur code de couplage: ${e.message}`)
+                    } else {
+                        addLog(botId, "warn", `🔁 Nouvelle tentative de génération du code (${attempt}/3)...`)
+                        await new Promise(resolve => setTimeout(resolve, 1500))
+                    }
+                }
+            }
+            if (code) {
                 addLog(botId, "info", `🔑 Code de couplage : ${code}`)
                 if (io) io.to(`bot:${botId}`).emit("pair-code", { botId, code })
-            } catch (e) {
-                addLog(botId, "error", `❌ Erreur code de couplage: ${e.message}`)
             }
         }
     }
@@ -105,7 +143,8 @@ async function startBot(botId, userId, phone) {
         if (connection === "close") {
             const code = lastDisconnect?.error?.output?.statusCode
             if (code === DisconnectReason.loggedOut) {
-                addLog(botId, "warn", "⚠️ Session expirée — reconnexion manuelle requise")
+                addLog(botId, "warn", "⚠️ Session expirée — la session a été réinitialisée, relancez la connexion")
+                wipeSessionDir(userId, botId)
                 await updateBotStatus(botId, userId, "disconnected")
                 delete instances[key]
             } else {
@@ -158,6 +197,19 @@ async function stopBot(botId, userId) {
     addLog(botId, "info", "🛑 Bot déconnecté")
 }
 
+async function cancelConnection(botId, userId) {
+    const key = `${userId}_${botId}`
+    if (instances[key]) {
+        try {
+            instances[key].sock.end()
+        } catch {}
+        delete instances[key]
+    }
+    wipeSessionDir(userId, botId)
+    await updateBotStatus(botId, userId, "disconnected")
+    addLog(botId, "info", "🚫 Connexion annulée — vous pouvez relancer une nouvelle tentative")
+}
+
 function getBotInstance(botId, userId) {
     return instances[`${userId}_${botId}`] || null
 }
@@ -166,4 +218,4 @@ function isRunning(botId, userId) {
     return !!instances[`${userId}_${botId}`]
 }
 
-module.exports = { setIo, startBot, stopBot, getBotInstance, isRunning, addLog }
+module.exports = { setIo, startBot, stopBot, cancelConnection, getBotInstance, isRunning, addLog }

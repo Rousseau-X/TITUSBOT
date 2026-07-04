@@ -1,6 +1,6 @@
 const express = require("express")
 const db = require("../db")
-const { startBot, stopBot, isRunning, addLog } = require("../botManager")
+const { startBot, stopBot, cancelConnection, isRunning, addLog } = require("../botManager")
 const fs = require("fs")
 const path = require("path")
 
@@ -115,6 +115,14 @@ router.post("/:id/disconnect", async (req, res) => {
     const bot = result.rows[0]
     if (!bot) return res.status(404).json({ error: "Bot non trouvé" })
     await stopBot(bot.id, req.userId)
+    res.json({ ok: true })
+})
+
+router.post("/:id/cancel", async (req, res) => {
+    const result = await db.query("SELECT * FROM bots WHERE id = $1 AND user_id = $2", [req.params.id, req.userId])
+    const bot = result.rows[0]
+    if (!bot) return res.status(404).json({ error: "Bot non trouvé" })
+    await cancelConnection(bot.id, req.userId)
     res.json({ ok: true })
 })
 
