@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom"
-import { ChevronLeft, Activity, Command, Settings, Save, Shield, MessageSquare, Hash } from "lucide-react"
+import { ChevronLeft, Activity, Command, Settings, Save, Shield, MessageSquare, Hash, Trash2 } from "lucide-react"
 import { config as configApi, bots as botsApi } from "../api/client"
 import { useLang } from "../i18n/LangContext"
 
@@ -176,7 +176,7 @@ export default function ConfigPage() {
                                 <div key={item.number} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.75rem 1rem", background: "var(--bg-base)", borderRadius: "6px", border: "1px solid var(--border-subtle)" }}>
                                     <span className="mono" style={{ color: "var(--text-main)", fontSize: "0.875rem" }}>{item.number}</span>
                                     <button onClick={() => removeBl(item.number)} className="btn-ghost" style={{ padding: "0.25rem", color: "var(--danger)" }}>
-                                        <Hash size={14} />
+                                        <Trash2 size={14} />
                                     </button>
                                 </div>
                             ))

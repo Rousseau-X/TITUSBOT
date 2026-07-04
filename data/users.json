@@ -28,5 +28,11 @@
     "email": "fianto673@gmail.com",
     "password_hash": "$2b$10$c7ydtxJcBailu8d6Ykhf5.5Tsuvj.v0tlcbKDCmcga.k214mehcsy",
     "name": "Fianto Titus "
+  },
+  {
+    "id": 6,
+    "email": "test1783159902711@test.com",
+    "password_hash": "$2b$10$f5aGHTr4I7R.XIGvYv508Oxe9mTXjgBsDF1a7qyDRp3c9ANcvltkS",
+    "name": "Test User"
   }
 ]
